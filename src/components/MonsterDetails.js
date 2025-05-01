@@ -32,21 +32,19 @@ export default function MonsterDetails({ initialData }) {
   const monster = initialData
   const monsterActions = monster.actions.map(action => action.name).join(", ")
 
-  {imageLoading && (
-    <div className="absolute inset-0 flex justify-center items-center bg-white bg-opacity-50 z-10">
-        {/* Loading Spinner */}
-        <svg className="w-10 h-10 text-gray-500 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 118 8 8 8 0 01-8-8z"></path>
-        </svg>
-    </div>
-)}
-
-
   return (
     <main className="bg-white rounded-lg shadow p-6 max-w-xl mx-auto">
       <h2 className="text-2xl font-semibold mb-2">{monster.name}</h2>
       <div className="mb-2 relative">
+        {imageLoading && (
+            <div className="absolute inset-0 flex justify-center items-center bg-white bg-opacity-50 z-10">
+                {/* Loading Spinner */}
+                <svg className="w-10 h-10 text-gray-500 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 118 8 8 8 0 01-8-8z"></path>
+                </svg>
+            </div>
+        )}
         
         {/* Placeholder image for now */}
         {monster.image ?
