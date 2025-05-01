@@ -1,31 +1,31 @@
-'use client'
+// 'use client'
 
 import Link from 'next/link'
-import useSWR from 'swr'
+// import useSWR from 'swr'
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms))
-}
+// function sleep(ms) {
+//     return new Promise(resolve => setTimeout(resolve, ms))
+// }
 
-const fetcher = async (url) => {
-    await sleep(500) // .5-second delay
-    const res = await fetch(url)
-    console.log('Client side Fetcher running...')
-    return res.json()
-}
+// const fetcher = async (url) => {
+//     await sleep(500) // .5-second delay
+//     const res = await fetch(url)
+//     console.log('Client side Fetcher running...')
+//     return res.json()
+// }
 
 export default function Monsters({ initialData }) {
-  const { data, error, isLoading } = useSWR(
-    'https://www.dnd5eapi.co/api/monsters',
-    fetcher,
-    {
-      fallbackData: initialData, // use SSR data first
-      revalidateOnFocus: true,   // re-fetch on tab focus
-    }
-  )
+//   const { data, error, isLoading } = useSWR(
+//     'https://www.dnd5eapi.co/api/monsters',
+//     fetcher,
+//     {
+//       fallbackData: initialData, // use SSR data first
+//       revalidateOnFocus: true,   // re-fetch on tab focus
+//     }
+//   )
 
-  if (isLoading) return <div className="text-gray-500">Loading...</div>
-  if (error) return <div className="text-red-500">Failed to load monsters</div>
+//   if (isLoading) return <div className="text-gray-500">Loading...</div>
+//   if (error) return <div className="text-red-500">Failed to load monsters</div>
 
   const monsters = initialData.results
 

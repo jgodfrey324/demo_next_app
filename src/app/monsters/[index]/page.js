@@ -6,7 +6,7 @@ function sleep(ms) {
 }
 
 async function getMonster(index) {
-    await sleep(500) // .5 second delay
+    // await sleep(500) // .5 second delay
     const res = await fetch(`https://www.dnd5eapi.co/api/monsters/${index}`, {
         next: { revalidate: 60 },
     })
