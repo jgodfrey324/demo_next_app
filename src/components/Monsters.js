@@ -1,6 +1,6 @@
 'use client'
 
-
+import Link from 'next/link'
 import useSWR from 'swr'
 
 function sleep(ms) {
@@ -30,22 +30,16 @@ export default function Monsters({ initialData }) {
   const monsters = initialData.results
 
   return (
-    <ul className="space-y-2">
+    <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {monsters.map((monster) => (
-        <li
+        <Link
+          href={`/monsters/${monster.index}`}
           key={monster.index}
-          className="bg-white rounded shadow p-4 hover:bg-gray-50 transition"
+          className="block bg-white rounded-lg shadow hover:shadow-md hover:scale-[1.02] transition-all p-5 border border-gray-100"
         >
-          <p className="text-lg font-semibold">{monster.name}</p>
-          <a
-            href={`https://www.dnd5eapi.co${monster.url}`}
-            target="_blank"
-            className="text-blue-600 text-sm underline"
-          >
-            View API
-          </a>
-        </li>
+          <h2 className="text-xl font-semibold text-gray-800">{monster.name}</h2>
+        </Link>
       ))}
-    </ul>
+    </main>
   )
 }
