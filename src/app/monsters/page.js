@@ -21,11 +21,16 @@ export default async function MonstersPage() {
   const data = await getMonsters()
 
   return (
-    <main className="min-h-screen bg-gray-100 py-10 px-6 md:px-12">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">Monster List</h1>
-        <Monsters initialData={data} />
+    <main className="min-h-screen bg-gradient-to-br from-[#1b1b1b] to-[#2d1d32] py-10 px-6 md:px-12 text-white font-serif">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-5xl font-bold text-yellow-100 mb-12 text-center drop-shadow-lg tracking-widest">
+          📖 Arcane Bestiary
+        </h1>
+
+        <section className="">
+          <Monsters initialData={data} />
+        </section>
       </div>
     </main>
-  )
+  );
 }

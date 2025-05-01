@@ -32,20 +32,31 @@ export default function MonsterDetails({ initialData }) {
   const monster = initialData
   const monsterActions = monster.actions.map(action => action.name).join(", ")
 
-  return (
-    <main className="bg-white rounded-lg shadow p-6 max-w-xl mx-auto">
-      <h2 className="text-2xl font-semibold mb-2">{monster.name}</h2>
-      <div className="mb-2 relative">
-        {imageLoading && (
-            <div className="absolute inset-0 flex justify-center items-center bg-white bg-opacity-50 z-10">
-                {/* Loading Spinner */}
-                <svg className="w-10 h-10 text-gray-500 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 118 8 8 8 0 01-8-8z"></path>
-                </svg>
-            </div>
-        )}
-        
+return (
+    <main className="bg-[#f9f3e9] border-4 border-yellow-800 rounded-2xl shadow-xl p-8 max-w-3xl mx-auto text-[#2b1d0e] font-serif">
+      {/* Name */}
+      <h2 className="text-3xl font-bold mb-4 text-center text-red-900 drop-shadow-md border-b-2 border-yellow-700 pb-2">
+        {monster.name}
+      </h2>
+
+      {/* Image with loading spinner */}
+      <div className="mb-4 relative">
+            {imageLoading && (
+                <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-90 z-10 rounded-lg">
+                    <div className="relative flex justify-center items-center">
+                    {/* Glowing Energy Ring Animation */}
+                    <div className="absolute w-32 h-32 border-4 border-t-transparent border-blue-500 rounded-full animate-spin-fast"></div>
+                
+                    {/* Main Orb */}
+                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full absolute animate-orb-spin"></div>
+                
+                    {/* Floating Glowing Particles */}
+                    <div className="absolute top-2 left-2 w-4 h-4 bg-gradient-to-br from-yellow-500 to-pink-600 rounded-full animate-pulse-slow"></div>
+                    <div className="absolute top-4 right-4 w-4 h-4 bg-gradient-to-br from-yellow-500 to-pink-600 rounded-full animate-pulse-slow"></div>
+                    <div className="absolute bottom-2 right-2 w-4 h-4 bg-gradient-to-br from-yellow-500 to-pink-600 rounded-full animate-pulse-slow"></div>
+                    </div>
+                </div>
+            )}
         {/* Placeholder image for now */}
         {monster.image ?
             <Image
@@ -67,27 +78,66 @@ export default function MonsterDetails({ initialData }) {
             />
         }
       </div>
-      <p className="italic text-gray-700 mb-6">Actions can perform: {monsterActions}</p>
-      <section className='grid grid-cols-2 gap-2'>
-        <div className="col-span-1">
-            <div><strong>Size:</strong> {monster.size}</div>
-            <div><strong>Type:</strong> {monster.type}</div>
-            <div><strong>Alignment:</strong> {monster.alignment}</div>
-            <div><strong>Languages:</strong> {monster.languages}</div>
-            <div><strong>HP:</strong> {monster.hit_points}</div>
-            <div><strong>XP:</strong> {monster.xp ?? 'N/A'}</div>
+
+      {/* Actions */}
+      <p className="italic text-yellow-900 mb-6 text-lg">
+        <span className="font-semibold text-[#42210b]">Actions:</span> {monsterActions}
+      </p>
+
+      {/* Stacked Info Sections */}
+      <section className="flex flex-col gap-6 mt-6">
+        {/* Lore */}
+        <div className="bg-yellow-100 rounded-lg p-6 border-2 border-yellow-700 shadow-inner w-full">
+          <h3 className="text-xl font-bold mb-3 text-yellow-900 border-b border-yellow-700 pb-2 tracking-wide">
+            📜 Lore
+          </h3>
+          <ul className="grid grid-cols-2 gap-y-2 gap-x-8 text-base">
+            <li><strong>Size:</strong> {monster.size}</li>
+            <li><strong>Type:</strong> {monster.type}</li>
+            <li><strong>Alignment:</strong> {monster.alignment}</li>
+            <li><strong>Languages:</strong> {monster.languages}</li>
+          </ul>
         </div>
-        <div className="col-span-1">
-            <div><strong>Challenge Rating:</strong> {monster.challenge_rating}</div>
-            <div><strong>Strength:</strong> {monster.strength}</div>
-            <div><strong>Dexterity:</strong> {monster.dexterity}</div>
-            <div><strong>Constitution:</strong> {monster.constitution}</div>
-            <div><strong>Intelligence:</strong> {monster.intelligence}</div>
-            <div><strong>Wisdom:</strong> {monster.wisdom}</div>
-            <div><strong>Charisma:</strong> {monster.charisma}</div>
+
+        {/* Vital Stats */}
+        <div className="bg-yellow-100 rounded-lg p-6 border-2 border-yellow-700 shadow-inner w-full">
+          <h3 className="text-xl font-bold mb-3 text-yellow-900 border-b border-yellow-700 pb-2 tracking-wide">
+            🩸 Vital Stats
+          </h3>
+          <ul className="grid grid-cols-2 gap-y-2 gap-x-8 text-base">
+            <li><strong>HP:</strong> {monster.hit_points}</li>
+            <li><strong>XP:</strong> {monster.xp ?? 'N/A'}</li>
+            <li><strong>Challenge Rating:</strong> {monster.challenge_rating}</li>
+          </ul>
+        </div>
+
+        {/* Abilities */}
+        <div className="bg-yellow-100 rounded-lg p-6 border-2 border-yellow-700 shadow-inner w-full">
+          <h3 className="text-xl font-bold mb-3 text-yellow-900 border-b border-yellow-700 pb-2 tracking-wide">
+            💪 Abilities
+          </h3>
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-4 text-center text-base font-semibold text-yellow-900">
+            <div className="bg-yellow-200 rounded-md p-2 border border-yellow-700 shadow-sm">
+              STR<br /><span className="text-xl text-black">{monster.strength}</span>
+            </div>
+            <div className="bg-yellow-200 rounded-md p-2 border border-yellow-700 shadow-sm">
+              DEX<br /><span className="text-xl text-black">{monster.dexterity}</span>
+            </div>
+            <div className="bg-yellow-200 rounded-md p-2 border border-yellow-700 shadow-sm">
+              CON<br /><span className="text-xl text-black">{monster.constitution}</span>
+            </div>
+            <div className="bg-yellow-200 rounded-md p-2 border border-yellow-700 shadow-sm">
+              INT<br /><span className="text-xl text-black">{monster.intelligence}</span>
+            </div>
+            <div className="bg-yellow-200 rounded-md p-2 border border-yellow-700 shadow-sm">
+              WIS<br /><span className="text-xl text-black">{monster.wisdom}</span>
+            </div>
+            <div className="bg-yellow-200 rounded-md p-2 border border-yellow-700 shadow-sm">
+              CHA<br /><span className="text-xl text-black">{monster.charisma}</span>
+            </div>
+          </div>
         </div>
       </section>
-      
     </main>
-  )
+  );
 }
